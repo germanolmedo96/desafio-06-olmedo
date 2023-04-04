@@ -1,0 +1,93 @@
+
+<div class="container">
+    <div class="top">
+        <h1>Nuestros Productos</h1>
+        {{#if user}}
+            <a href="/api/session/logout">
+                <button class="btn">Logout</button>
+            </a>
+            <a class="cart" href="/profile">
+                <i class="fa-solid fa-user fa-2xl"></i>
+            </a>
+        {{else}}
+            <a href="/login">
+                <button class="btn">Login</button>
+            </a>
+        {{/if}}
+        <a class="cart" href="/cart">
+            <i class="fa-solid fa-cart-shopping fa-2xl"></i>
+        </a>
+    </div>
+    {{#if user}}
+        <div class="user">
+            <p>Bienvenido {{user.name}}</p>
+            <p>Email: {{user.email}}</p>
+            <p>Rol: {{user.rol}}</p>
+        </div>
+    {{/if}}
+    <div class="products-container">
+        {{#each products}}
+        <div class="product-container">
+            <h3>Nombre: {{this.title}}</h3>
+            <div class="img-info-product">
+                <img src={{this.thumbnails}} alt="">
+                <div class="info-product">
+                    <p>Descipción: {{this.description}}</p>
+                    <p>Código: {{this.code}}</p>
+                    <p>Precio: {{this.price}}</p>
+                    <p>Stock: {{this.stock}}</p>
+                    <p>Categoría: {{this.category}}</p>
+                    <p>Id: {{this._id}}</p>
+                    <form action="/cart/add/{{this._id}}" method="post">
+                        <button type="submit">Agregar al carrito</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="controllers">
+        {{#if hasPrevPage}}
+            <a href="/products?page={{prevPage}}">
+                <i class="fa-solid fa-circle-left fa-xl"></i>
+            </a>
+        {{/if}}
+
+        <h3>{{Page}}</h3>
+
+        {{#if hasNextPage}}
+            <a href="/products?page={{nextPage}}">
+                <i class="fa-solid fa-circle-right fa-xl"></i>
+            </a>
+        {{/if}}
+    </div>
+</div>
+
+{{!-- <script src="/socket.io/socket.io.js"></script> --}}
+<script src="/js/products.js"></script>
+<script src="https://kit.fontawesome.com/e9d32d96ee.js" crossorigin="anonymous"></script>
+
+{{!-- {{#if isLogin}}
+<h1>
+    ¡Bienvenido {{user.first_name}} {{user.last_name}}!
+    Usted tiene el Rol: {{user.rol}}
+</h1>
+<button id="btnLogout">Logout</button>
+{{/if}}
+
+<h2>Lista de Productos</h2>
+
+{{#each products}}
+<p>Producto: {{title}} - Precio: ${{price}} - Categoria: {{category}} - Stock: {{quantity}}</p>
+<button onclick={addProductToCart(`{{_id}}`)}>Agregar al carrito</button>
+{{/each}}
+
+{{#if hasPrevPage}}
+<a href="/products?page={{prevPage}}"><button>Anterior</button></a>
+{{/if}}
+
+{{#if hasNextPage}}
+<a href="/products?page={{nextPage}}"><button>Siguiente</button></a>
+{{/if}}
+
+<script src="/js/logout.js"></script> --}}
