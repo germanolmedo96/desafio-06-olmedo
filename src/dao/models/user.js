@@ -5,14 +5,14 @@ const collection = 'users';
 const schema = new mongoose.Schema({
     first_name:{
         type:String,
-        required:true
+        required:false
     },
     last_name:{
         type:String,
     },
     email:{
         type:String,
-        required:true,
+        required:false,
         unique:true
     },
     age:{
@@ -20,7 +20,7 @@ const schema = new mongoose.Schema({
     },
     password:{
         type:String,
-        required:true
+        required:false
     },
     rol:{
         type:String,
